@@ -1,3 +1,4 @@
 testng-6.8.7.jar
 selenium-server-standalone.jar
 *.class
+*.sh
