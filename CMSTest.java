@@ -15,21 +15,40 @@ public class CMSTest
 
         WebDriver driver = new ChromeDriver();
 
-        driver.get("web site");
+        String baseUrl = "";
+
+        driver.get( baseUrl + "login");
         
         System.out.println("Chrome openning");
 
         // provide id of email element
         WebElement userElement = driver.findElement(By.id("email"));
-        userElement.sendKeys("user name");
+        userElement.sendKeys("");
 
         // provide id of password element
         WebElement passElement = driver.findElement(By.id("password"));
-        passElement.sendKeys("password");
+        passElement.sendKeys("");
 
         // can use id of submit button, if provided in form
         WebElement loginElement = driver.findElement(By.xpath("//button[@type='submit']"));
         loginElement.submit();
+
+        String expectedURL = baseUrl + ""; // enter url, on which user will be redirected after login, eg - baseurl/dashboard
+        String currentURL = driver.getCurrentUrl();
+
+        if(expectedURL.equalsIgnoreCase(currentURL)) {
+            System.out.println("Test passed"); 
+        } else {
+            System.out.println("Test failed");
+            System.exit(1);
+        }
+        // put desired url to open that page in web portal
+        driver.get( baseUrl + "");
+
+        // enter desired anchor tag href, which you want to open
+        WebElement createMedicine = driver.findElement(By.xpath("//a[@href='']"));
+        createMedicine.click();
+
 
     }
 
